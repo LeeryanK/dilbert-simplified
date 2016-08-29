@@ -195,7 +195,7 @@
   listen(btns.newest, newestComic);
   listen(btns.jump, jumpComic);
   
-  window.addEventListener('beforeunload', saveComic);
+  document.body.onbeforeunload = saveComic;
   
   loadComicAccordingToComicDate();
 })();
