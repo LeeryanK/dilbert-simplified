@@ -1,5 +1,6 @@
 #button-panel, #jump-to-comic, #comic {
   display: block;
+  padding: 10px;
 }
 
 .button {
