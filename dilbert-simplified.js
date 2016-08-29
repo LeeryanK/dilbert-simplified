@@ -172,4 +172,6 @@
   listen(btns.random, randomComic);
   listen(btns.next, nextComic);
   listen(btns.newest, newestComic);
+  
+  loadComicAccordingToComicDate();
 })();
