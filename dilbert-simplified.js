@@ -61,7 +61,7 @@
       tmrwDay = 1;
       tmrwMonth++;
 
-      if (tmwrMonth > MONTHS_IN_YEAR) {
+      if (tmrwMonth > MONTHS_IN_YEAR) {
         tmrwMonth = 1;
         tmrwYear++;
       }
@@ -79,8 +79,10 @@
       31, 31, 30, 31, 30, 31];
     var MONTHS_IN_EACH_YEAR = 12;
 
-
-    var lastDayInPreviousMonth = DAYS_IN_EACH_MONTH[+this.getMonth() - 2];
+    var prevMonthInZeroBasedIndex = +this.getMonth() - 2;
+    if (prevMonthInZeroBasedIndex < 0)
+      prevMonthInZeroBasedIndex += 12;
+    var lastDayInPreviousMonth = DAYS_IN_EACH_MONTH[prevMonthInZeroBasedIndex];
 
     var thisYear = +this.getYear();
     var thisMonth = +this.getMonth();
