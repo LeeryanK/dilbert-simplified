@@ -1,3 +1,7 @@
 #button-panel, #jump-to-comic, #comic {
   display: block;
 }
+
+.button {
+  cursor: pointer;
+}
