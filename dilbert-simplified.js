@@ -4,10 +4,13 @@
     previous: document.getElementById('previous'),
     random: document.getElementById('random'),
     next: document.getElementById('next'),
-    newest: document.getElementById('newest')
+    newest: document.getElementById('newest'),
+    jump: document.getElementById('jump')
   };
 
   var comicImg = document.getElementById('comic');
+  var comicNumber = document.getElementById('comic-number');
+  var jumpInput = document.getElementById('comic-number-input');
 
   var BASE = 'http://www.foo.be/docs-free/dilbert/www.geek.nl/pics/dilbert-arch/dilbert-';
   var FIRST = DateString(20011103);
@@ -122,6 +125,7 @@
   }
 
   function loadComicAccordingToComicDate() {
+    comicNumber.innerHTML = currentComicDate.string;
     comicImg.src = BASE + currentComicDate.string + '.gif';
   }
 
@@ -161,6 +165,15 @@
     currentComicDate = DateString(str);
     loadComicAccordingToComicDate();
   }
+  
+  function jumpComic() {
+    try {
+      currentComicDate = DateString(jumpInput.value);
+      loadComicAccordingToComicDate();
+    } catch (e) {
+      alert('Your date was invalid. It must be in YYYYMMDD form.');
+    }
+  }
 
   function listen(elem, func) {
     elem.addEventListener('click', func);
@@ -172,6 +185,7 @@
   listen(btns.random, randomComic);
   listen(btns.next, nextComic);
   listen(btns.newest, newestComic);
+  listen(btns.jump, jumpComic)
   
   loadComicAccordingToComicDate();
 })();
