@@ -113,7 +113,11 @@
     return this.string === otherDateString.string;
   };
 
-  currentComicDate = FIRST;
+  try {
+    currentComicDate = DateString(localStorage.lastComicDate);
+  } catch (e) {
+    currentComicDate = FIRST;
+  }
 
   function lp0(src, len) {
     src += '';
@@ -174,6 +178,10 @@
       alert('Your date was invalid. It must be in YYYYMMDD form.');
     }
   }
+  
+  function saveComic() {
+    localStorage.lastComicDate = currentDate.string;
+  }
 
   function listen(elem, func) {
     elem.addEventListener('click', func);
@@ -185,7 +193,9 @@
   listen(btns.random, randomComic);
   listen(btns.next, nextComic);
   listen(btns.newest, newestComic);
-  listen(btns.jump, jumpComic)
+  listen(btns.jump, jumpComic);
+  
+  window.addEventListener('beforeunload', saveComic);
   
   loadComicAccordingToComicDate();
 })();
