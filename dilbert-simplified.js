@@ -105,6 +105,10 @@
     return new DateString(lp0(yesterYear, 4) + lp0(yesterMonth, 2) +
       lp0(yesterDay, 2));
   };
+  
+  DateString.prototype.equals = function(otherDateString) {
+    return this.string === otherDateString.string;
+  };
 
   currentComicDate = FIRST;
 
