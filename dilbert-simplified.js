@@ -180,7 +180,7 @@
   }
   
   function saveComic() {
-    localStorage.lastComicDate = currentDate.string;
+    localStorage.lastComicDate = currentComicDate.string;
   }
 
   function listen(elem, func) {
