@@ -15,6 +15,7 @@
   var BASE = 'http://www.foo.be/docs-free/dilbert/www.geek.nl/pics/dilbert-arch/dilbert-';
   var FIRST = DateString(20011103);
   var NEWEST = DateString(20100815);
+  var HAS_TOUCH_EVENTS = 'ontouchstart' in document.documentElement;
 
   var currentComicDate;
 
@@ -184,7 +185,10 @@
   }
 
   function listen(elem, func) {
-    elem.addEventListener('click', func);
+    elem.addEventListener('click', function() {
+      if (!HAS_TOUCH_EVENTS)
+        func();
+    });
     elem.addEventListener('touchend', func);
   }
 
