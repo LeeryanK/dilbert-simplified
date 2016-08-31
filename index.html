@@ -3,17 +3,27 @@
   <head>
     <base href="/dilbert-simplified/"/>
     <link rel="stylesheet" href="dilbert-simplified.css">
+    <title>Dilbert Simplified</title>
   </head>
 
   <body>
+    <div id="button-panel">
+      <img id="first" class="button" src="images/first-button.jpg"/>
+      <img id="previous" class="button" src="images/previous-button.jpg"/>
+      <img id="random" class="button" src="images/random-button.jpg"/>
+      <img id="next" class="button" src="images/next-button.jpg"/>
+      <img id="newest" class="button" src="images/newest-button.jpg"/>
+    </div>
+    
+    <div id="jump-to-comic">
+      Write a date to jump to here, in YYYYMMDD form.
+      <input type="number" id="comic-number-input">
+      <img id="jump" src="images/jump-button.jpg">
+    </div>
+    
+    <div id="comic-number-display">Comic date: <span id="comic-number">20011103</span></div>
+
     <img id="comic"/>
-
-    <img id="first" src="images/first-button"/>
-    <img id="next" src="images/previous-button"/>
-    <img id="random" src="images/random-button"/>
-    <img id="previous" src="images/next-button"/>
-    <img id="newest" src="images/newest-button"/>
-
     <script src="dilbert-simplified.js"></script>
   </body>
 </html>

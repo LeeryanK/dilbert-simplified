@@ -4,10 +4,13 @@
     previous: document.getElementById('previous'),
     random: document.getElementById('random'),
     next: document.getElementById('next'),
-    newest: document.getElementById('newest')
+    newest: document.getElementById('newest'),
+    jump: document.getElementById('jump')
   };
 
   var comicImg = document.getElementById('comic');
+  var comicNumber = document.getElementById('comic-number');
+  var jumpInput = document.getElementById('comic-number-input');
 
   var BASE = 'http://www.foo.be/docs-free/dilbert/www.geek.nl/pics/dilbert-arch/dilbert-';
   var FIRST = DateString(20011103);
@@ -105,8 +108,16 @@
     return new DateString(lp0(yesterYear, 4) + lp0(yesterMonth, 2) +
       lp0(yesterDay, 2));
   };
+  
+  DateString.prototype.equals = function(otherDateString) {
+    return this.string === otherDateString.string;
+  };
 
-  currentComicDate = FIRST;
+  try {
+    currentComicDate = DateString(localStorage.lastComicDate);
+  } catch (e) {
+    currentComicDate = FIRST;
+  }
 
   function lp0(src, len) {
     src += '';
@@ -118,6 +129,7 @@
   }
 
   function loadComicAccordingToComicDate() {
+    comicNumber.innerHTML = currentComicDate.string;
     comicImg.src = BASE + currentComicDate.string + '.gif';
   }
 
@@ -146,7 +158,7 @@
   }
 
   function randomComic() {
-    var year = randInt(FIRST.getYear() + 1, NEWEST.getYear() - 1);
+    var year = randInt(+FIRST.getYear() + 1, +NEWEST.getYear() - 1);
     var month = randInt(1, 12);
     var DAYS_IN_EACH_MONTH = [31, year % 4 ? 28 : 29, 31, 30, 31, 30,
       31, 31, 30, 31, 30, 31];
@@ -156,6 +168,19 @@
 
     currentComicDate = DateString(str);
     loadComicAccordingToComicDate();
+  }
+  
+  function jumpComic() {
+    try {
+      currentComicDate = DateString(jumpInput.value);
+      loadComicAccordingToComicDate();
+    } catch (e) {
+      alert('Your date was invalid. It must be in YYYYMMDD form.');
+    }
+  }
+  
+  function saveComic() {
+    localStorage.lastComicDate = currentComicDate.string;
   }
 
   function listen(elem, func) {
@@ -168,4 +193,9 @@
   listen(btns.random, randomComic);
   listen(btns.next, nextComic);
   listen(btns.newest, newestComic);
+  listen(btns.jump, jumpComic);
+  
+  document.body.onbeforeunload = saveComic;
+  
+  loadComicAccordingToComicDate();
 })();
