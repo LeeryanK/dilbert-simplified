@@ -158,7 +158,7 @@
   }
 
   function randomComic() {
-    var year = randInt(FIRST.getYear() + 1, NEWEST.getYear() - 1);
+    var year = randInt(+FIRST.getYear() + 1, +NEWEST.getYear() - 1);
     var month = randInt(1, 12);
     var DAYS_IN_EACH_MONTH = [31, year % 4 ? 28 : 29, 31, 30, 31, 30,
       31, 31, 30, 31, 30, 31];
