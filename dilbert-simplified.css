@@ -5,4 +5,16 @@
 
 .button {
   cursor: pointer;
+  
+  background-color: #ffffff;
+  color: #000000;
+  
+  text-align: center;
+  
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: #000000;
+  
+  width: 5%;
 }
